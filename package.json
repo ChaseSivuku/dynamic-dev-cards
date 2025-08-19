@@ -1,0 +1,13 @@
+{
+  "name": "task-6.2-dynamic-dev-cards",
+  "version": "1.0.0",
+  "description": "Reads `devData.json` from the filesystem (Node `fs`), serves it at `/api/devs`, and renders developer cards dynamically in the browser using OOP JavaScript.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
