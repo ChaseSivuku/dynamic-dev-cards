@@ -23,10 +23,10 @@ function initializeAndReadJSON(fileName) {
       path.join(__dirname, 'devData.json'),
       JSON.stringify(jsonData, null, 4)
     );
-    console.log(`✅ Converted ${fileName} → devData.json`);
+    console.log(`Converted ${fileName} to devData.json`);
     return jsonData;
   } catch (err) {
-    console.error('❌ Failed to convert spreadsheet:', err.message);
+    console.error(' Failed to convert spreadsheet:', err.message);
     return [];
   }
 }

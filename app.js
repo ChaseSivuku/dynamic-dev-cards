@@ -50,67 +50,71 @@ class DevCardManager {
   }
 
   createCardElement(dev) {
-    const {
-      userID,
-      userName,
-      yearsXP,
-      isActive,
-      pictureURL,
-      email,
-      phone,
-      skills,
-      bio
-    } = dev;
+  const {
+    devID,
+    username,
+    yearsExperience,
+    isActive,
+    pictureUrl,
+    email,
+    phone,
+    skills,
+    bio
+  } = dev;
 
-    const card = document.createElement("article");
-    card.className = "card";
-    card.dataset.userid = userID;
+  const card = document.createElement("article");
+  card.className = "card";
+  card.dataset.userid = devID;
 
-    const top = document.createElement("div");
-    top.className = "top";
-    const avatar = document.createElement("img");
-    avatar.className = "avatar";
-    avatar.src = pictureURL || "https://via.placeholder.com/150?text=Dev";
-    avatar.alt = `${userName}'s avatar`;
-    const topInfo = document.createElement("div");
-    topInfo.innerHTML = `
-      <div class="name-line">
-        <h3 style="margin:0">${userName}</h3>
-        <span class="badge"><i class="fa-solid fa-code"></i> ${yearsXP} yrs</span>
-        <span class="badge ${isActive ? "active" : ""}">
-          ${isActive ? '<i class="fa-solid fa-circle-check"></i> Active' : '<i class="fa-regular fa-circle"></i> Inactive'}
-        </span>
-      </div>
-      <div class="meta">ID: ${userID}</div>
-    `;
-    top.appendChild(avatar);
-    top.appendChild(topInfo);
+  const top = document.createElement("div");
+  top.className = "top";
+  const avatar = document.createElement("img");
+  avatar.className = "avatar";
+  avatar.src = pictureUrl || "https://via.placeholder.com/150?text=Dev";
+  avatar.alt = `${username}'s avatar`;
 
-    const skillList = document.createElement("ul");
-    skillList.className = "skills";
-    (skills || []).forEach(s => {
-      const li = document.createElement("li");
-      li.textContent = s;
-      skillList.appendChild(li);
-    });
+  const topInfo = document.createElement("div");
+  topInfo.innerHTML = `
+    <div class="name-line">
+      <h3 style="margin:0">${username}</h3>
+      <span class="badge"><i class="fa-solid fa-code"></i> ${yearsExperience} yrs</span>
+      <span class="badge ${isActive ? "active" : ""}">
+        ${isActive ? '<i class="fa-solid fa-circle-check"></i> Active' : '<i class="fa-regular fa-circle"></i> Inactive'}
+      </span>
+    </div>
+    <div class="meta">ID: ${devID}</div>
+  `;
+  top.appendChild(avatar);
+  top.appendChild(topInfo);
 
-    const bioP = document.createElement("p");
-    bioP.className = "bio";
-    bioP.textContent = bio;
+  // Convert skills from string to array
+  const skillArray = skills ? skills.split(/[,;]\s*/) : [];
 
-    const contact = document.createElement("div");
-    contact.className = "contact";
-    if (email) contact.innerHTML += `<span><i class="fa-regular fa-envelope"></i> ${email}</span>`;
-    if (phone) contact.innerHTML += `<span><i class="fa-solid fa-phone"></i> ${phone}</span>`;
+  const skillList = document.createElement("ul");
+  skillList.className = "skills";
+  skillArray.forEach(s => {
+    const li = document.createElement("li");
+    li.textContent = s;
+    skillList.appendChild(li);
+  });
 
-    card.appendChild(top);
-    card.appendChild(document.createElement("hr"));
-    card.appendChild(skillList);
-    card.appendChild(bioP);
-    card.appendChild(contact);
+  const bioP = document.createElement("p");
+  bioP.className = "bio";
+  bioP.textContent = bio;
 
-    return card;
-  }
+  const contact = document.createElement("div");
+  contact.className = "contact";
+  if (email) contact.innerHTML += `<span><i class="fa-regular fa-envelope"></i> ${email}</span>`;
+  if (phone) contact.innerHTML += `<span><i class="fa-solid fa-phone"></i> ${phone}</span>`;
+
+  card.appendChild(top);
+  card.appendChild(document.createElement("hr"));
+  card.appendChild(skillList);
+  card.appendChild(bioP);
+  card.appendChild(contact);
+
+  return card;
+}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
